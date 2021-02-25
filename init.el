@@ -19,7 +19,7 @@
 (setq package-native-compile t)
 
 ;; Set Korean
-(set-language-environment "Korean")
+;; (set-language-environment "Korean")
 (prefer-coding-system 'utf-8)
 (global-set-key (kbd "<S-kana>") 'toggle-input-method)
 
