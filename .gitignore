@@ -1,0 +1,10 @@
+/.cache
+/.extension
+/auto-save-list
+/eln-cache
+/elpa
+/transient
+/.last-package-update-day
+/.lsp*
+/projectile-bookmarks.eld
+/recentf
