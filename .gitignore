@@ -8,3 +8,5 @@
 /.lsp*
 /projectile-bookmarks.eld
 /recentf
+/.dap-breakpoints
+/projects

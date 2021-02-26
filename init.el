@@ -102,12 +102,14 @@
                   select-window-8
                   select-window-9))))
 (use-package evil
-   :custom
-   (evil-want-integration t)
-   (evil-want-minibuffer t)
-   (evil-want-keybinding  nil)
-   :config
-   (evil-mode 1))
+    :init
+    (setq evil-want-C-u-scroll t)
+    :custom
+    (evil-want-integration t)
+    (evil-want-minibuffer t)
+    (evil-want-keybinding  nil)
+    :config
+(evil-mode 1))
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
@@ -123,8 +125,6 @@
   :config
   (powerline-evil-vim-color-theme))
 
-(use-package evil-magit
-  :after evil)
 (use-package evil-collection
   :after evil
   :custom
@@ -193,7 +193,8 @@
     "l h"   'lsp-hover
     "l a"   'lsp-execute-code-action
     "l f"   'lsp-format-buffer
-    "l l"   'lsp-lens-mode)
+    "l l"   'lsp-lens-mode
+    "l s"   'lsp-ui-find-workspace-symbol)
   (evil-leader/set-key-for-mode
     'rust-mode
     "c a"   'cargo-process-add
