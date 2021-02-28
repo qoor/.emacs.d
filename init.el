@@ -35,9 +35,10 @@
 (setq make-backup-files nil)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-(add-to-list 'default-frame-alist '(font . "Hack-10"))
-(set-face-attribute 'default t :font "Hack-10")
-(set-fontset-font t 'hangul (font-spec :name "D2Coding-10"))
+(tool-bar-mode -1)
+(add-to-list 'default-frame-alist '(font . "Hack-12"))
+(set-face-attribute 'default t :font "Hack-12")
+(set-fontset-font t 'hangul (font-spec :name "D2Coding-12"))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
@@ -104,12 +105,12 @@
 (use-package evil
     :init
     (setq evil-want-C-u-scroll t)
+    (setq evil-want-integration t)
+    (setq evil-want-keybinding nil)
     :custom
-    (evil-want-integration t)
     (evil-want-minibuffer t)
-    (evil-want-keybinding  nil)
     :config
-(evil-mode 1))
+    (evil-mode 1))
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
@@ -129,6 +130,7 @@
   :after evil
   :custom
   (evil-collection-setup-minibuffer t)
+  (evil-collection-want-find-usages-bindings t)
   :config (evil-collection-init))
 
 (defun my-multi-term()
@@ -355,9 +357,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default-input-method "korean-hangul")
- '(package-selected-packages
-   '(treemacs-magit company-box evil-collection powerline-evil magit ivy undo-tree dap-python dap-lldb dap-mode yaml-mode frame-local all-the-icons-ivy typescript-mode ripgrep evil-escape evil-magit rainbow-identifiers yasnippet company-anaconda avy-flycheck all-the-icons company-glsl glsl-mode flycheck-rust visual-regexp-steroids hl-todo restart-emacs cargo use-package company evil dracula-theme lsp-ui flycheck powerline projectile lsp-rust lsp-haskell lsp-mode)))
+ '(default-input-method "korean-hangul"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
