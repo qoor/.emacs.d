@@ -211,9 +211,11 @@
   (global-evil-leader-mode))
 
 (use-package lsp-mode
+  :hook
+  ((c-mode
+    c++-mode) . lsp)
   :config
-  (setq lsp-eldoc-enable-hover t)
-  (setq lsp-eldoc-render-all t)
+  (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
   (setq lsp-diagnostic-package :flycheck)
   (setq lsp-enable-completion-at-point t)
@@ -320,11 +322,6 @@
   :after company
   :config
   (add-to-list 'company-backends 'company-glsl))
-
-(use-package lsp-mode
-  :hook
-  (c-mode . lsp)
-  (c++-mode . lsp))
 
 ;; Rust
 ;(use-package lsp-mode
