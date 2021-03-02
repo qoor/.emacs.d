@@ -192,11 +192,13 @@
     "l g r" 'lsp-find-references
     "l r"   'lsp-rename
     "l b r" 'lsp-workspace-restart
-    "l h"   'lsp-hover
+    "l h"   'lsp-ui-doc-focus-frame
+    "l j"   'lsp-ui-doc-unfocus-frame
     "l a"   'lsp-execute-code-action
     "l f"   'lsp-format-buffer
     "l l"   'lsp-lens-mode
     "l s"   'lsp-ui-find-workspace-symbol)
+
   (evil-leader/set-key-for-mode
     'rust-mode
     "c a"   'cargo-process-add
@@ -245,9 +247,10 @@
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-show-diagnostics t)
-  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-show-hover nil)
   (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-sideline-ignore-duplicate t)
+  (lsp-ui-doc-frame-mode 1)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package company
