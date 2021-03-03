@@ -164,17 +164,26 @@
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
-(use-package evil-leader
-  :after evil
+(use-package general
   :config
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key
+  (general-define-key
+    :states 'normal
+    :prefix "SPC"
+    
+    ""      '(nil :which-key "my lieutenant general prefix")
+    
+    "b"     '(:ignore t :which-key "buffer prefix")
     "b d"   'kill-buffer
+    
+    "w"     '(:ignore t :which-key "window prefix")
     "w d"   'quit-window
+    
+    "f"     '(:ignore t :which-key "file prefix")
     "f e"   'find-file
     "f d"   'my-open-dot-file
     "f w"   'my-open-repos
     "f r"   'my-load-dot-file
+    
     "s"     'my-multi-term
     "g"     'magit
     "r"     'recentf-open-files
@@ -182,43 +191,26 @@
 
     "t"     'treemacs
 
+    "p"     '(:ignore t :which-key "projectile prefix")
     "p r"   'projectile-ripgrep
     "p f"   'projectile-find-file
 
+    "c"     '(:ignore t :which-key "cargo prefix")
     "c n"   'cargo-process-new
 
+    "h"     '(:ignore t :which-key "hl prefix")
     "h n"   'hl-todo-next
     "h p"   'hl-todo-previous
 
-    "l d"	'lsp-ui-doc-show
-    "l g g" 'lsp-find-definition
-    "l g r" 'lsp-find-references
-    "l r"   'lsp-rename
-    "l b r" 'lsp-workspace-restart
-    "l m"   'lsp-ui-doc-focus-frame
-    "l n"   'lsp-ui-doc-unfocus-frame
-    "l a"   'lsp-execute-code-action
-    "l f"   'lsp-format-buffer
-    "l l"   'lsp-lens-mode
-    "l s"   'lsp-ui-find-workspace-symbol)
-
-  (evil-leader/set-key-for-mode
-    'rust-mode
-    "c a"   'cargo-process-add
-    "c m"   'cargo-process-rm
-    "c r d" 'cargo-process-run
-    "c r r" 'my-cargo-process-run-release
-    "c c"   'cargo-process-check
-    "c f"   'cargo-process-fmt
-    "c b"   'cargo-process-build
-    "c t t" 'cargo-process-test
-    "c t a" 'my-cargo-process-test)
-  (global-evil-leader-mode))
+    "l"     '(:package lsp-mode :keymap lsp-command-map :which-key "lsp-mode prefix")))
 
 (use-package lsp-mode
   :hook
-  ((c-mode
-    c++-mode) . lsp)
+  (((c-mode
+     c++-mode) . lsp)
+   (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
+                             (lsp-enable-which-key-integration)))))
+  :commands lsp
   :config
   (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
@@ -361,7 +353,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default-input-method "korean-hangul"))
+ '(default-input-method "korean-hangul")
+ '(package-selected-packages
+   '(general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-leader evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
