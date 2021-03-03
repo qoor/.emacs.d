@@ -31,11 +31,15 @@
 (global-display-line-numbers-mode)
 (electric-pair-mode)
 (recentf-mode 1)
+(show-paren-mode t)
 (setq comint-move-point-for-output t)
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
+(setq show-paren-delay 0)
+(setq show-paren-style 'parenthesis)
+(setq show-paren-when-point-inside-paren t)
 (tool-bar-mode -1)
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
 (set-face-attribute 'default t :font "Hack-12")
@@ -105,14 +109,14 @@
                   select-window-8
                   select-window-9))))
 (use-package evil
-    :init
-    (setq evil-want-C-u-scroll t)
-    (setq evil-want-integration t)
-    (setq evil-want-keybinding nil)
-    :custom
-    (evil-want-minibuffer t)
-    :config
-    (evil-mode 1))
+  :init
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  :custom
+  (evil-want-minibuffer t)
+  :config
+  (evil-mode 1))
 (use-package undo-tree
   :config
   (global-undo-tree-mode))
@@ -167,49 +171,49 @@
 (use-package general
   :config
   (general-define-key
-    :states 'normal
-    :prefix "SPC"
-    
-    ""      '(nil :which-key "my lieutenant general prefix")
-    
-    "b"     '(:ignore t :which-key "buffer prefix")
-    "b d"   'kill-buffer
-    
-    "w"     '(:ignore t :which-key "window prefix")
-    "w d"   'quit-window
-    
-    "f"     '(:ignore t :which-key "file prefix")
-    "f e"   'find-file
-    "f d"   'my-open-dot-file
-    "f w"   'my-open-repos
-    "f r"   'my-load-dot-file
-    
-    "s"     'my-multi-term
-    "g"     'magit
-    "r"     'recentf-open-files
-    "<tab>" 'mode-line-other-buffer
+   :states 'normal
+   :prefix "SPC"
+   
+   ""      '(nil :which-key "my lieutenant general prefix")
+   
+   "b"     '(:ignore t :which-key "buffer prefix")
+   "b d"   'kill-buffer
+   
+   "w"     '(:ignore t :which-key "window prefix")
+   "w d"   'quit-window
+   
+   "f"     '(:ignore t :which-key "file prefix")
+   "f e"   'find-file
+   "f d"   'my-open-dot-file
+   "f w"   'my-open-repos
+   "f r"   'my-load-dot-file
+   
+   "s"     'my-multi-term
+   "g"     'magit
+   "r"     'recentf-open-files
+   "<tab>" 'mode-line-other-buffer
 
-    "t"     'treemacs
+   "t"     'treemacs
 
-    "p"     '(:ignore t :which-key "projectile prefix")
-    "p r"   'projectile-ripgrep
-    "p f"   'projectile-find-file
+   "p"     '(:ignore t :which-key "projectile prefix")
+   "p r"   'projectile-ripgrep
+   "p f"   'projectile-find-file
 
-    "c"     '(:ignore t :which-key "cargo prefix")
-    "c n"   'cargo-process-new
+   "c"     '(:ignore t :which-key "cargo prefix")
+   "c n"   'cargo-process-new
 
-    "h"     '(:ignore t :which-key "hl prefix")
-    "h n"   'hl-todo-next
-    "h p"   'hl-todo-previous
+   "h"     '(:ignore t :which-key "hl prefix")
+   "h n"   'hl-todo-next
+   "h p"   'hl-todo-previous
 
-    "l"     '(:package lsp-mode :keymap lsp-command-map :which-key "lsp-mode prefix")))
+   "l"     '(:package lsp-mode :keymap lsp-command-map :which-key "lsp-mode prefix")))
 
 (use-package lsp-mode
   :hook
   (((c-mode
      c++-mode) . lsp)
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
-                             (lsp-enable-which-key-integration)))))
+                            (lsp-enable-which-key-integration)))))
   :commands lsp
   :config
   (setq lsp-eldoc-hook nil)
