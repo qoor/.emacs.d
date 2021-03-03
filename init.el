@@ -22,6 +22,7 @@
 ;; (set-language-environment "Korean")
 (prefer-coding-system 'utf-8)
 (global-set-key (kbd "<S-kana>") 'toggle-input-method)
+(global-set-key (kbd "TAB") 'indent-relative)
 
 (setq gc-cons-threshold 10000000)
 (setq read-process-output-max (* 1024 1024))
@@ -41,6 +42,7 @@
 (set-fontset-font t 'hangul (font-spec :name "D2Coding-12"))
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default c-basic-offset 4)
 
 (setq inhibit-startup-screen t)
 
@@ -188,12 +190,13 @@
     "h n"   'hl-todo-next
     "h p"   'hl-todo-previous
 
+    "l d"	'lsp-ui-doc-show
     "l g g" 'lsp-find-definition
     "l g r" 'lsp-find-references
     "l r"   'lsp-rename
     "l b r" 'lsp-workspace-restart
-    "l h"   'lsp-ui-doc-focus-frame
-    "l j"   'lsp-ui-doc-unfocus-frame
+    "l m"   'lsp-ui-doc-focus-frame
+    "l n"   'lsp-ui-doc-unfocus-frame
     "l a"   'lsp-execute-code-action
     "l f"   'lsp-format-buffer
     "l l"   'lsp-lens-mode
@@ -222,7 +225,8 @@
   (setq lsp-diagnostic-package :flycheck)
   (setq lsp-enable-completion-at-point t)
   (setq lsp-enable-imenu t)
-  (setq lsp-enable-indentation t)
+  (setq lsp-enable-indentation nil)
+  (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-snippet t)
   (setq lsp-enable-semantic-highlighting t)
   (setq lsp-enable-symbol-highlighting t)
