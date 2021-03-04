@@ -56,6 +56,8 @@
 
 (add-hook 'c-mode-common-hook 'display-fill-column-indicator-mode)
 (add-hook 'emacs-lisp-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'makefile-mode-hook 'my-makefile-config)
+(add-hook 'makefile-gmake-mode-hook 'my-makefile-config)
 
 (use-package dracula-theme
   :config
@@ -171,6 +173,11 @@
 (defun my-load-dot-file()
   (interactive)
   (load-file "~/.emacs.d/init.el"))
+
+(defun my-makefile-config()
+  (interactive)
+  (setq tab-width 8)
+  (setq indent-tabs-mode t))
 
 (use-package general
   :config
