@@ -222,7 +222,8 @@
 (use-package lsp-mode
   :hook
   (((c-mode
-     c++-mode) . lsp)
+     c++-mode
+     cmake-mode) . lsp)
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
                             (lsp-enable-which-key-integration)))))
   :commands lsp
@@ -363,6 +364,8 @@
   (rust-mode . cargo-minor-mode))
 (use-package toml-mode)
 
+(use-package cmake-mode)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -370,7 +373,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
+   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
