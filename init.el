@@ -47,11 +47,15 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq-default c-basic-offset 4)
+(setq-default display-fill-column-indicator-column 80)
 
 (setq inhibit-startup-screen t)
 
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
+
+(add-hook 'c-mode-common-hook 'display-fill-column-indicator-mode)
+(add-hook 'emacs-lisp-mode-hook 'display-fill-column-indicator-mode)
 
 (use-package dracula-theme
   :config
@@ -334,14 +338,14 @@
   (add-to-list 'company-backends 'company-glsl))
 
 ;; Rust
-;(use-package lsp-mode
-;  :hook
-;  (rust-mode . lsp)
-;  :custom
-;  (lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
-;  (lsp-rust-analyzer-display-parameter-hints t)
-;  (lsp-rust-analyzer-proc-macro-enable t)
-;  (lsp-rust-analyzer-server-display-inlay-hints t))
+;; (use-package lsp-mode
+;;   :hook
+;;   (rust-mode . lsp)
+;;   :custom
+;;   (lsp-rust-analyzer-cargo-load-out-dirs-from-check t)
+;;   (lsp-rust-analyzer-display-parameter-hints t)
+;;   (lsp-rust-analyzer-proc-macro-enable t)
+;;   (lsp-rust-analyzer-server-display-inlay-hints t))
 (use-package dap-mode
   :config
   (dap-mode 1)
