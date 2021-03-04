@@ -171,6 +171,13 @@
 (use-package general
   :config
   (general-define-key
+   :keymaps 'lsp-command-map
+   :wk-full-keys nil
+
+   "h f"    '(lsp-ui-doc-focus-frame :which-key "focus document")
+   "h u"    '(lsp-ui-doc-unfocus-frame :which-key "unfocus document"))
+
+  (general-define-key
    :states 'normal
    :prefix "SPC"
    
