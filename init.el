@@ -254,7 +254,7 @@
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-show-diagnostics t)
-  (setq lsp-ui-sideline-show-hover nil)
+  (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-sideline-ignore-duplicate t)
   (lsp-ui-doc-frame-mode 1)
@@ -366,7 +366,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-leader evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
+   '(general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
