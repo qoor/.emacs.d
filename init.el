@@ -308,6 +308,8 @@
 (use-package projectile)
 
 (use-package treemacs
+  :hook
+  (treemacs-mode . (lambda () (display-line-numbers-mode -1)))
   :config
   (progn
     (setq treemacs-collapse-dirs (if treemacs-python-executable 3 0)
