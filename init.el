@@ -3,6 +3,9 @@
 ;;;  My Emacs dotfile
 
 ;;; Code:
+
+(setenv "LANG" "en_US.UTF-8")
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 
