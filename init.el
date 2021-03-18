@@ -1,3 +1,8 @@
+;;; Package --- init.el
+;;; Commentary:
+;;;  My Emacs dotfile
+
+;;; Code:
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 
@@ -24,30 +29,32 @@
 (global-set-key (kbd "<S-kana>") 'toggle-input-method)
 (global-set-key (kbd "TAB") 'indent-relative)
 
-(setq gc-cons-threshold 10000000)
-(setq read-process-output-max (* 1024 1024))
-(setq display-line-numbers-type 'list)
-(setq warning-minimum-level :emergency)
 (global-display-line-numbers-mode)
 (electric-pair-mode)
 (recentf-mode 1)
 (show-paren-mode t)
-(setq comint-move-point-for-output t)
-(setq create-lockfiles nil)
-(setq make-backup-files nil)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
-(setq show-paren-delay 0)
-(setq show-paren-style 'parenthesis)
-(setq show-paren-when-point-inside-paren t)
-(setq c-default-style "linux")
-(setq c-basic-offset 4)
 (tool-bar-mode -1)
+
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
 (set-face-attribute 'default t :font "Hack-12")
 (set-fontset-font t 'hangul (font-spec :name "D2Coding-12"))
+
+(setq gc-cons-threshold 10000000)
+(setq read-process-output-max (* 1024 1024))
+(setq warning-minimum-level :emergency)
+(setq create-lockfiles nil)
+(setq make-backup-files nil)
+(setq-default recentf-max-menu-items 25)
+(setq-default recentf-max-saved-items 25)
+(setq-default show-paren-delay 0)
+(setq-default show-paren-style 'parenthesis)
+(setq-default show-paren-when-point-inside-paren t)
+(setq-default c-default-style "linux")
+(setq-default c-basic-offset 4)
+(setq-default comint-move-point-for-output t)
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default display-line-numbers-type 'list)
 (setq-default display-fill-column-indicator-column 80)
 
 (setq inhibit-startup-screen t)
@@ -147,19 +154,19 @@
   :config (evil-collection-init))
 
 (defun my-multi-term()
-  "Open multi-term on buttom"
+  "Open multi-term on buttom."
   (interactive)
   (split-window-below)
   (other-window 1)
   (multi-term))
 
 (defun my-cargo-process-run-release()
-  "Run cargo run --relase"
+  "Run cargo run --relase."
   (interactive)
   (cargo-process--start "Run" "run --release"))
 
 (defun my-cargo-process-test()
-  "Run cargo test"
+  "Run cargo test."
   (interactive)
   (cargo-process--start "Test" "test --all"))
 
@@ -172,10 +179,12 @@
   (dired "~/repos"))
 
 (defun my-load-dot-file()
+  "Open the Emacs dotfile."
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
 (defun my-makefile-config()
+  "Reload the Emacs dotfile."
   (interactive)
   (setq tab-width 8)
   (setq indent-tabs-mode t))
@@ -235,20 +244,21 @@
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
                             (lsp-enable-which-key-integration)))))
   :commands lsp
+  :custom
+  (setq lsp-diagnostic-provider :flycheck)
+  (setq lsp-completion-provider :capf)
   :config
   (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
-  (setq lsp-diagnostic-package :flycheck)
-  (setq lsp-enable-completion-at-point t)
+  (setq lsp-completion-enable t)
   (setq lsp-enable-imenu t)
   (setq lsp-enable-indentation nil)
   (setq lsp-enable-on-type-formatting nil)
   (setq lsp-enable-snippet t)
-  (setq lsp-enable-semantic-highlighting t)
+  (setq lsp-semantic-tokens-enable t)
   (setq lsp-enable-symbol-highlighting t)
   (setq lsp-enable-text-document-color t)
-  (setq lsp-enable-xref t)
-  (setq lsp-prefer-capf t))
+  (setq lsp-enable-xref t))
 
 (use-package which-key
   :config
