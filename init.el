@@ -66,7 +66,10 @@
 (setq use-package-always-ensure t)
 
 (add-hook 'c-mode-common-hook 'display-fill-column-indicator-mode)
-(add-hook 'emacs-lisp-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (display-fill-column-indicator-mode)
+            (flycheck-mode t)))
 (add-hook 'makefile-mode-hook 'my-makefile-config)
 (add-hook 'makefile-gmake-mode-hook 'my-makefile-config)
 
@@ -85,6 +88,8 @@
   (auto-package-update-maybe))
 
 (use-package multi-term
+  :custom
+  (multi-term-dedicated-select-after-open-p t)
   :config
   (setq multi-term-program "/bin/zsh")
   (add-hook 'term-mode-hook
@@ -156,12 +161,12 @@
   (evil-collection-want-find-usages-bindings t)
   :config (evil-collection-init))
 
-(defun my-multi-term()
-  "Open multi-term on buttom."
-  (interactive)
-  (split-window-below)
-  (other-window 1)
-  (multi-term))
+;; (defun my-multi-term()
+;;   "Open multi-term on buttom."
+;;   (interactive)
+;;   (split-window-below)
+;;   (other-window 1)
+;;   (multi-term))
 
 (defun my-cargo-process-run-release()
   "Run cargo run --relase."
@@ -219,7 +224,7 @@
    "f w"   'my-open-repos
    "f r"   'my-load-dot-file
    
-   "s"     'my-multi-term
+   "s"     'multi-term-dedicated-open
    "g"     'magit
    "r"     'recentf-open-files
    "<tab>" 'mode-line-other-buffer
