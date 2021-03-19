@@ -47,6 +47,7 @@
 (setq warning-minimum-level :emergency)
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
+(setq scroll-conservatively 101)
 (setq-default recentf-max-menu-items 25)
 (setq-default recentf-max-saved-items 25)
 (setq-default show-paren-delay 0)
@@ -150,9 +151,17 @@
   (global-set-key (kbd "C-z")   'undo-fu-only-undo)
   (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
 
-(use-package powerline-evil
+;; (use-package powerline-evil
+;;   :config
+;;   (powerline-evil-vim-color-theme))
+
+(use-package airline-themes
+  :custom
+  (airline-cursor-colors nil)
+  (airline-helm-colors nil)
+  (airline-display-directory 'airline-directory-shortend)
   :config
-  (powerline-evil-vim-color-theme))
+  (load-theme 'airline-onedark t))
 
 (use-package evil-collection
   :after evil
