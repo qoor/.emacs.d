@@ -155,6 +155,10 @@
 ;;   :config
 ;;   (powerline-evil-vim-color-theme))
 
+(use-package powerline
+  :config
+  (defpowerline powerline-minor-modes nil))
+
 (use-package airline-themes
   :custom
   (airline-cursor-colors nil)
@@ -410,7 +414,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode powerline-evil popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
+   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
