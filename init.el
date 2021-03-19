@@ -108,8 +108,8 @@
 
 (use-package golden-ratio
   :config
-  (setq golden-ratio-auto-scale t)
   (golden-ratio-mode t)
+  (setq golden-ratio-auto-scale t)
   (setq golden-ratio-extra-commands
         (append golden-ratio-extra-commands
                 '(evil-window-left
@@ -130,7 +130,11 @@
                   select-window-6
                   select-window-7
                   select-window-8
-                  select-window-9))))
+                  select-window-9)))
+  (setq golden-ratio-exclude-modes
+        (append golden-ratio-exclude-modes
+                '(term-mode))))
+
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t)
@@ -192,10 +196,12 @@
   (cargo-process--start "Test" "test --all"))
 
 (defun my-open-dot-file()
+  "Open the Emacs dotfile."
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
 (defun my-open-repos()
+  "Reload configurations from the Emacs dotfile."
   (interactive)
   (dired "~/repos"))
 
@@ -364,21 +370,6 @@
   :config
   (push 'company-elisp company-backends))
 
-(use-package typescript-mode)
-
-;; GLSL
-(use-package glsl-mode
-  :init
-  (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
-  (add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
-  (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
-  (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode)))
-
-(use-package company-glsl
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-glsl))
-
 ;; Rust
 ;; (use-package lsp-mode
 ;;   :hook
@@ -388,6 +379,7 @@
 ;;   (lsp-rust-analyzer-display-parameter-hints t)
 ;;   (lsp-rust-analyzer-proc-macro-enable t)
 ;;   (lsp-rust-analyzer-server-display-inlay-hints t))
+
 (use-package dap-mode
   :config
   (dap-mode 1)
@@ -397,6 +389,7 @@
   (dap-ui-controls-mode 1)
   (require 'dap-lldb)
   (require 'dap-gdb-lldb))
+
 (use-package flycheck-rust
   :hook
   (rust-mode . flycheck-mode))
@@ -414,7 +407,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu typescript-mode treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-glsl company-box cargo auto-package-update all-the-icons)))
+   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-box cargo auto-package-update all-the-icons)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
