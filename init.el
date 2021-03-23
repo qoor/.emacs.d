@@ -164,6 +164,7 @@
   (defpowerline powerline-minor-modes nil))
 
 (use-package airline-themes
+  :after powerline
   :custom
   (airline-cursor-colors nil)
   (airline-helm-colors nil)
@@ -272,8 +273,11 @@
                             (lsp-enable-which-key-integration)))))
   :commands lsp
   :custom
-  (setq lsp-diagnostic-provider :flycheck)
-  (setq lsp-completion-provider :capf)
+  (lsp-diagnostic-provider :flycheck)
+  (lsp-completion-provider :capf)
+  (lsp-clients-clangd-args
+   '("--header-insertion-decorators=0"
+     "--header-insertion=never"))
   :config
   (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
@@ -411,7 +415,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(cmake-mode general yasnippet which-key use-package undo-tree undo-fu treemacs-projectile treemacs-magit treemacs-icons-dired treemacs-evil toml-mode popwin multi-term lsp-ui ivy hl-todo golden-ratio flycheck-rust evil-collection dracula-theme dap-mode company-shell company-box cargo auto-package-update all-the-icons)))
+   '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline undo-fu undo-tree evil golden-ratio magit ivy multi-term auto-package-update dracula-theme use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
