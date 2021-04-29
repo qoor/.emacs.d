@@ -67,6 +67,12 @@
 (setq use-package-always-ensure t)
 
 (add-hook 'c-mode-common-hook 'display-fill-column-indicator-mode)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (display-fill-column-indicator-mode)
+            (c-set-offset 'access-label '/)
+            (c-set-offset 'case-label '+)
+            (c-set-offset 'innamespace '0)))
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (display-fill-column-indicator-mode)
