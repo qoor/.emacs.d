@@ -72,7 +72,9 @@
             (display-fill-column-indicator-mode)
             (c-set-offset 'access-label '/)
             (c-set-offset 'case-label '+)
-            (c-set-offset 'innamespace '0)))
+            (c-set-offset 'innamespace '0)
+            (c-set-offset 'inline-open '0)
+            (c-set-offset 'inextern-lang '0)))
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (display-fill-column-indicator-mode)
@@ -235,21 +237,21 @@
   (general-define-key
    :states 'normal
    :prefix "SPC"
-   
+
    ""      '(nil :which-key "my lieutenant general prefix")
-   
+
    "b"     '(:ignore t :which-key "buffer prefix")
    "b d"   'kill-buffer
-   
+
    "w"     '(:ignore t :which-key "window prefix")
    "w d"   'quit-window
-   
+
    "f"     '(:ignore t :which-key "file prefix")
    "f e"   'find-file
    "f d"   'my-open-dot-file
    "f w"   'my-open-repos
    "f r"   'my-load-dot-file
-   
+
    "s"     'multi-term-dedicated-open
    "g"     'magit
    "r"     'recentf-open-files
