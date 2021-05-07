@@ -409,7 +409,8 @@
  '(package-selected-packages
    '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline undo-fu undo-tree evil golden-ratio magit ivy vterm auto-package-update dracula-theme use-package))
  '(safe-local-variable-values
-   '((eval add-hook 'before-save-hook #'lsp-format-buffer nil t))))
+   '((eval add-hook 'before-save-hook #'lsp-format-buffer nil t)
+     (dtrt-indent-mode . nil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
