@@ -96,17 +96,7 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package multi-term
-  :custom
-  (multi-term-dedicated-select-after-open-p t)
-  :config
-  (setq multi-term-program "/bin/zsh")
-  (add-hook 'term-mode-hook
-            (lambda ()
-              (setq term-buffer-maximum-size 10000)))
-  (add-hook 'term-mode-hook
-            (lambda ()
-              (setq show-trailing-whitespace nil))))
+(use-package vterm)
 
 (use-package ivy
   :config
@@ -187,13 +177,6 @@
   (evil-collection-want-find-usages-bindings t)
   :config (evil-collection-init))
 
-;; (defun my-multi-term()
-;;   "Open multi-term on buttom."
-;;   (interactive)
-;;   (split-window-below)
-;;   (other-window 1)
-;;   (multi-term))
-
 (defun my-cargo-process-run-release()
   "Run cargo run --relase."
   (interactive)
@@ -252,7 +235,7 @@
    "f w"   'my-open-repos
    "f r"   'my-load-dot-file
 
-   "s"     'multi-term-dedicated-open
+   "s"     'vterm
    "g"     'magit
    "r"     'recentf-open-files
    "<tab>" 'mode-line-other-buffer
@@ -262,6 +245,7 @@
    "p"     '(:ignore t :which-key "projectile prefix")
    "p r"   'projectile-ripgrep
    "p f"   'projectile-find-file
+   "p s"   'projectile-run-vterm
 
    "c"     '(:ignore t :which-key "cargo prefix")
    "c n"   'cargo-process-new
@@ -423,7 +407,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline undo-fu undo-tree evil golden-ratio magit ivy multi-term auto-package-update dracula-theme use-package))
+   '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline undo-fu undo-tree evil golden-ratio magit ivy vterm auto-package-update dracula-theme use-package))
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook #'lsp-format-buffer nil t))))
 (custom-set-faces
