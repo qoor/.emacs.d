@@ -96,7 +96,9 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package vterm)
+(use-package vterm
+  :custom
+  (vterm-shell "/bin/zsh"))
 
 (use-package ivy
   :config
