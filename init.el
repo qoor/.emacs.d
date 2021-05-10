@@ -30,7 +30,7 @@
 ;; (set-language-environment "Korean")
 (prefer-coding-system 'utf-8)
 (global-set-key (kbd "<S-kana>") 'toggle-input-method)
-(global-set-key (kbd "TAB") 'indent-relative)
+;; (global-set-key (kbd "TAB") 'indent-relative)
 
 (global-display-line-numbers-mode)
 (electric-pair-mode)
@@ -48,6 +48,7 @@
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
 (setq scroll-conservatively 101)
+(setq tab-always-indent nil)
 (setq-default recentf-max-menu-items 25)
 (setq-default recentf-max-saved-items 25)
 (setq-default show-paren-delay 0)
@@ -60,6 +61,7 @@
 (setq-default tab-width 4)
 (setq-default display-line-numbers-type 'list)
 (setq-default display-fill-column-indicator-column 80)
+(setq-default c-tab-always-indent nil)
 
 (setq inhibit-startup-screen t)
 
