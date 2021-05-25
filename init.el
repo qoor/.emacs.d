@@ -68,6 +68,31 @@
 (require 'use-package-ensure)
 (setq use-package-always-ensure t)
 
+(defun my-c-lineup-expression-plus-4 (langelem)
+  "Indents to the beginning of the current C expression plus 4 spaces.
+This implements title \"Function Declarations and Definitions\"
+of the Google C++ Style Guide for the case where the previous
+line ends with an open parenthese.
+\"Current C expression\", as per the Google Style Guide and as
+clarified by subsequent discussions, means the whole expression
+regardless of the number of nested parentheses, but excluding
+non-expression material such as \"if(\" and \"for(\" control
+structures.
+Suitable for inclusion in `c-offsets-alist'."  (save-excursion
+    (back-to-indentation)
+    ;; Go to beginning of *previous* line:
+    (c-backward-syntactic-ws)
+    (back-to-indentation)
+    (cond
+     ;; We are making a reasonable assumption that if there is a control
+     ;; structure to indent past, it has to be at the beginning of the line.
+     ((looking-at "\\(\\(if\\|for\\|while\\)\\s *(\\)")
+      (goto-char (match-end 1)))
+     ;; For constructor initializer lists, the reference point for line-up is
+     ;; the token after the initial colon.
+     ((looking-at ":\\s *")
+      (goto-char (match-end 0))))
+    (vector (+ 4 (current-column)))))
 (defconst my-c-style
   `((c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
@@ -108,7 +133,8 @@
                        defun-close-semi
                        list-close-comma
                        scope-operator))
-    (c-offsets-alist . ((func-decl-cont . ++)
+    (c-offsets-alist . ((arglist-intro my-c-lineup-expression-plus-4)
+                        (func-decl-cont . ++)
                         (member-init-intro . ++)
                         (inher-intro . ++)
                         (comment-intro . 0)
@@ -280,6 +306,12 @@
 
    "h f"    '(lsp-ui-doc-focus-frame :which-key "focus document")
    "h u"    '(lsp-ui-doc-unfocus-frame :which-key "unfocus document"))
+
+  ;; (general-define-key
+  ;;  :keymaps 'c-mode-base-map
+
+  ;;  "\C-m"   'newline-and-indent
+  ;;  [ret]    'newline-and-indent)
 
   (general-define-key
    :states 'normal
