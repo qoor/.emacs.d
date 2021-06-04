@@ -62,6 +62,8 @@
 (setq-default display-line-numbers-type 'list)
 (setq-default display-fill-column-indicator-column 80)
 (setq-default c-tab-always-indent nil)
+;; Remove all whitespaces when type "#"
+(setq-default c-electric-pound-behavior '(alignleft))
 
 (setq inhibit-startup-screen t)
 
@@ -363,9 +365,6 @@ Suitable for inclusion in `c-offsets-alist'."  (save-excursion
   :custom
   (lsp-diagnostic-provider :flycheck)
   (lsp-completion-provider :capf)
-  (lsp-clients-clangd-args
-   '("--header-insertion-decorators=0"
-     "--header-insertion=never"))
   :config
   (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
