@@ -127,7 +127,8 @@ Suitable for inclusion in `c-offsets-alist'."
                         (statement-case-open . +)
                         (statement-case-intro . +) ; case w/o {
                         (access-label . /)
-                        (innamespace . 0))))
+                        (innamespace . 0)
+                        (inextern-lang . 0))))
   "My C/C++ Programming Style.")
 
 ;;;###autoload
