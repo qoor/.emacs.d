@@ -137,7 +137,7 @@ Suitable for inclusion in `c-offsets-alist'."
   Style. Meant to be added to `c-mode-common-hook'."
   (interactive)
   (make-local-variable 'c-tab-always-indent)
-  (setq c-tab-always-indent t)
+  ;; (setq c-tab-always-indent t)
   (c-add-style "my-c-style" my-c-style t))
 
 ;;;###autoload
