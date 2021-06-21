@@ -23,7 +23,7 @@
   (package-install 'use-package))
 
 ;; Enable JIT
-(setq comp-deferred-compilation t)
+(setq native-comp-deferred-compilation t)
 (setq package-native-compile t)
 
 ;; Set Korean
