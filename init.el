@@ -304,6 +304,7 @@
   :after lsp-mode
   :config
   (setq lsp-ui-doc-enable t)
+  (setq lsp-ui-doc-include-signature t)
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-show-diagnostics t)
