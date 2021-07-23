@@ -98,9 +98,11 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package vterm
-  :custom
-  (vterm-shell "/bin/zsh"))
+;; Using vterm package when operating system is not Windows
+(when (not (eq system-type 'windows-nt))
+  (use-package vterm
+    :custom
+    (vterm-shell "/bin/zsh")))
 
 (use-package ivy
   :config
