@@ -11,3 +11,5 @@
 /.dap-breakpoints
 /projects
 /session.*
+/tramp
+/flycheck_init.el

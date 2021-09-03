@@ -293,13 +293,18 @@
   (setq lsp-enable-symbol-highlighting t)
   (setq lsp-enable-text-document-color t)
   (setq lsp-enable-xref t)
-  (progn
-    (lsp-register-client
-     (make-lsp-client
-      :new-connection (lsp-tramp-connection "clangd")
-      :major-modes '(c-mode c++-mode)
-      :remote? t
-      :server-id 'clangd-remote))))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-tramp-connection "clangd")
+    :major-modes '(c-mode c++-mode)
+    :remote? t
+    :server-id 'clangd-remote))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-tramp-connection "cmake-language-server")
+    :major-modes '(cmake-mode)
+    :remote? t
+    :server-id 'cmake-language-server-remote)))
 
 (use-package which-key
   :config
