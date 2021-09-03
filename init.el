@@ -99,10 +99,12 @@
   (auto-package-update-maybe))
 
 ;; Using vterm package when operating system is not Windows
-(when (not (eq system-type 'windows-nt))
-  (use-package vterm
-    :custom
-    (vterm-shell "/bin/zsh")))
+(if (not (eq system-type 'windows-nt))
+    (use-package vterm
+      :custom
+      (vterm-shell "/bin/zsh"))
+  (when (executable-find "plink")
+    (setq-default tramp-default-method "plink")))
 
 (use-package ivy
   :config
