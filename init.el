@@ -40,7 +40,8 @@
 
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
 (set-face-attribute 'default t :font "Hack-12")
-(set-fontset-font t 'hangul (font-spec :name "D2Coding-12"))
+(when (not (eq system-type 'darwin))
+  (set-fontset-font t 'hangul (font-spec :name "D2Coding-12")))
 
 (setq gc-cons-threshold 10000000)
 (setq read-process-output-max (* 1024 1024))
