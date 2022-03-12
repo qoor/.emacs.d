@@ -145,10 +145,14 @@ Suitable for inclusion in `c-offsets-alist'."
   "Sets up preferred newline behavior. Not set by default. Meant
   to be added to `c-mode-common-hook'."
   (interactive)
-  (define-key c-mode-base-map "\C-m" 'newline-and-indent)
-  (define-key c-mode-base-map [ret] 'newline-and-indent)
-  (general-define-key c-mode-base-map "\C-m" 'newline-and-indent)
-  (general-define-key c-mode-base-map [ret] 'newline-and-indent))
+  (if (fboundp 'general-define-key)
+      (general-define-key
+       :keymaps 'c-mode-base-map
+       "\C-m" 'newline-and-indent
+       [ret] 'newline-and-indent)
+    (progn
+      (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+      (define-key c-mode-base-map [ret] 'newline-and-indent))))
 
 (provide 'my-c-style)
 ;;; my-c-style.el ends here
