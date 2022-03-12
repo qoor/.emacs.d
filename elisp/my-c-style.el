@@ -68,7 +68,7 @@ Suitable for inclusion in `c-offsets-alist'."
 (defconst my-c-style
   `((c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t) ; speed up indentation in XEmacs
-    (c-basic-offset . 4)
+    (c-basic-offset . 2)
     (indent-tabs-mode . nil)
     (c-comment-only-line-offset . 0)
     (c-hanging-braces-alist . ((defun-open after)
@@ -110,7 +110,7 @@ Suitable for inclusion in `c-offsets-alist'."
                         (member-init-intro . ++)
                         (inher-intro . ++)
                         (comment-intro . 0)
-                        ;; (arglist-close . c-lineup-arglist)
+                        (arglist-close . c-lineup-arglist)
                         (topmost-intro . 0)
                         (block-open . 0)
                         (inline-open . 0)
