@@ -425,6 +425,12 @@
   :config
   (dtrt-indent-global-mode t))
 
+(use-package markdown-mode
+  :mode
+  ("\\.md" . gfm-mode)
+  :init
+  (setq markdown-command "pandoc -t html5 -f gfm --self-contained --mathjax --quiet --highlight-style=zenburn --template=github.html5"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
