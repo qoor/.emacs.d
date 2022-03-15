@@ -250,7 +250,7 @@
    "f w"   'my-open-repos
    "f r"   'my-load-dot-file
 
-   "s"     'vterm
+   "s"     'vterm-other-window
    "g"     'magit
    "r"     'recentf-open-files
    "<tab>" 'mode-line-other-buffer
