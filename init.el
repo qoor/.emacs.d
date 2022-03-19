@@ -101,9 +101,22 @@
 
 ;; Using vterm package when operating system is not Windows
 (if (not (eq system-type 'windows-nt))
-    (use-package vterm
-      :custom
-      (vterm-shell "/bin/zsh"))
+    (progn
+      (use-package vterm
+        :custom
+        (vterm-shell "/bin/zsh"))
+      (use-package vterm-toggle
+        :config
+        (add-to-list 'display-buffer-alist
+                     '((lambda(bufname _)
+                         (with-current-buffer bufname
+                           (equal major-mode 'vterm-mode)))
+                       (display-buffer-reuse-window
+                        display-buffer-at-bottom)
+                       (side . bottom)
+                       (dedicated . t) ; dedicated is supported in emacs27
+                       (reusable-frames . visible)
+                       (window-height . 0.3)))))
   (when (executable-find "plink")
     (setq-default tramp-default-method "plink")))
 
@@ -250,7 +263,7 @@
    "f w"   'my-open-repos
    "f r"   'my-load-dot-file
 
-   "s"     'vterm-other-window
+   "s"     'vterm-toggle
    "g"     'magit
    "r"     'recentf-open-files
    "<tab>" 'mode-line-other-buffer
