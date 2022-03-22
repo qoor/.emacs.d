@@ -160,20 +160,21 @@
   (setq evil-want-C-u-scroll t)
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
+  (setq evil-undo-system 'undo-redo)
   :custom
   (evil-want-minibuffer t)
   :config
   (evil-mode 1))
-(use-package undo-tree
-  :config
-  (global-undo-tree-mode))
-(use-package undo-fu
-  :config
-  (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
-  (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo)
-  (global-unset-key (kbd "C-z"))
-  (global-set-key (kbd "C-z")   'undo-fu-only-undo)
-  (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
+;; (use-package undo-tree
+;;   :config
+;;   (global-undo-tree-mode))
+;; (use-package undo-fu
+;;   :config
+;;   (define-key evil-normal-state-map "u" 'undo-fu-only-undo)
+;;   (define-key evil-normal-state-map "\C-r" 'undo-fu-only-redo)
+;;   (global-unset-key (kbd "C-z"))
+;;   (global-set-key (kbd "C-z")   'undo-fu-only-undo)
+;;   (global-set-key (kbd "C-S-z") 'undo-fu-only-redo))
 
 ;; (use-package powerline-evil
 ;;   :config
@@ -451,7 +452,7 @@
  ;; If there is more than one, they won't work right.
  '(default-input-method "korean-hangul")
  '(package-selected-packages
-   '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline undo-fu undo-tree evil golden-ratio magit ivy vterm auto-package-update dracula-theme use-package))
+   '(dtrt-indent cmake-mode toml-mode cargo flycheck-rust dap-mode treemacs-icons-dired treemacs-magit treemacs-projectile treemacs-evil treemacs projectile all-the-icons popwin hl-todo company-box company-shell company lsp-ui yasnippet which-key lsp-mode general evil-collection airline-themes powerline evil golden-ratio magit ivy vterm auto-package-update dracula-theme use-package))
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook #'lsp-format-buffer nil t)
      (dtrt-indent-mode))))
