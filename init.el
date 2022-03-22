@@ -83,7 +83,9 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (display-fill-column-indicator-mode)
-            (my-set-c-style)))
+            (my-set-c-style)
+            (modify-syntax-entry ?_ "w")
+            (setq evil-symbol-word-search t)))
 
 (use-package dracula-theme
   :config
@@ -161,6 +163,7 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-redo)
+  (defalias 'forward-evil-word 'forward-evil-symbol)
   :custom
   (evil-want-minibuffer t)
   :config
@@ -245,6 +248,15 @@
 
   ;;  "\C-m"   'newline-and-indent
   ;;  [ret]    'newline-and-indent)
+
+  (general-define-key
+   :keymaps 'evil-outer-text-objects-map
+   "w" 'evil-a-symbol
+   "o" 'evil-a-word)
+  (general-define-key
+   :keymaps 'evil-inner-text-objects-map
+   "w" 'evil-inner-symbol
+   "o" 'evil-inner-word)
 
   (general-define-key
    :states 'normal
@@ -433,7 +445,11 @@
   (rust-mode . cargo-minor-mode))
 (use-package toml-mode)
 
-(use-package cmake-mode)
+(use-package cmake-mode
+  :hook
+  (cmake-mode . (lambda ()
+                  (modify-syntax-entry ?_ "w")
+                  (setq evil-symbol-word-search t))))
 
 (use-package dtrt-indent
   :config
