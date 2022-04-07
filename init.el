@@ -308,6 +308,10 @@
   :custom
   (lsp-diagnostic-provider :flycheck)
   (lsp-completion-provider :capf)
+  :init
+  ;; Compile lsp-mode in plist instead of hash-table
+  ;; Note that you must set environment variable `LSP_USE_PLISTS` to `true`
+  (setq lsp-use-plists t)
   :config
   (setq lsp-eldoc-hook nil)
   (setq lsp-auto-execute-action t)
