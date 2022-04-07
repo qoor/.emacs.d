@@ -155,7 +155,7 @@
                   select-window-9)))
   (setq golden-ratio-exclude-modes
         (append golden-ratio-exclude-modes
-                '(term-mode))))
+                '(vterm-mode))))
 
 (use-package evil
   :init
