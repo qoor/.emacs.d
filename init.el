@@ -249,14 +249,14 @@
   ;;  "\C-m"   'newline-and-indent
   ;;  [ret]    'newline-and-indent)
 
-  (general-define-key
-   :keymaps 'evil-outer-text-objects-map
-   "w" 'evil-a-symbol
-   "o" 'evil-a-word)
-  (general-define-key
-   :keymaps 'evil-inner-text-objects-map
-   "w" 'evil-inner-symbol
-   "o" 'evil-inner-word)
+  ;; (general-define-key
+  ;;  :keymaps 'evil-outer-text-objects-map
+  ;;  "w" 'evil-a-symbol
+  ;;  "o" 'evil-a-word)
+  ;; (general-define-key
+  ;;  :keymaps 'evil-inner-text-objects-map
+  ;;  "w" 'evil-inner-symbol
+  ;;  "o" 'evil-inner-word)
 
   (general-define-key
    :states 'normal
