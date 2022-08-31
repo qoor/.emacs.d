@@ -305,7 +305,8 @@
   :hook
   (((c-mode
      c++-mode
-     cmake-mode) . lsp)
+     cmake-mode
+     sql-mode) . lsp)
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
                             (lsp-enable-which-key-integration)))))
   :commands lsp
