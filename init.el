@@ -109,15 +109,19 @@
         (vterm-shell "/bin/zsh"))
       (use-package vterm-toggle
         :config
+        (setq vterm-toggle-fullscreen-p nil)
         (add-to-list 'display-buffer-alist
-                     '((lambda(bufname _)
-                         (with-current-buffer bufname
-                           (equal major-mode 'vterm-mode)))
+                     '((lambda (buffer-or-name _)
+                         (let ((buffer (get-buffer buffer-or-name)))
+                           (with-current-buffer buffer
+                             (or (equal major-mode 'vterm-mode)
+                                 (string-prefix-p vterm-buffer-name
+                                                  (buffer-name buffer))))))
                        (display-buffer-reuse-window
-                        display-buffer-at-bottom)
+                        display-buffer-in-side-window)
                        (side . bottom)
-                       (dedicated . t) ; dedicated is supported in emacs27
-                       (reusable-frames . visible)
+                       (dedicated . t)
+                       (reuseable-frames . visible)
                        (window-height . 0.3)))))
   (when (executable-find "plink")
     (setq-default tramp-default-method "plink")))
