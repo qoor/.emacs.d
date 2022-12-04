@@ -6,6 +6,9 @@
 
 (setenv "LANG" "en_US.UTF-8")
 
+(when (memq window-system '(mac ns x))
+  (setenv "LSP_USE_PLISTS" "true"))
+
 (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 (setq package-check-signature nil)
 
