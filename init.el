@@ -174,7 +174,9 @@
   :custom
   (evil-want-minibuffer t)
   :config
-  (evil-mode 1))
+  (evil-mode 1)
+  ;; If available, use lsp-ui-doc instead of evil-lookup (woman)
+  (setq evil-lookup-func 'my-smart-doc-lookup))
 ;; (use-package undo-tree
 ;;   :config
 ;;   (global-undo-tree-mode))
@@ -241,6 +243,30 @@
   (setq tab-width 8)
   (setq indent-tabs-mode t))
 
+(defun my-smart-doc-lookup ()
+  "Run documentation lookup command specific to the minor mode."
+  (interactive)
+  (if (bound-and-true-p lsp-mode)
+      (lsp-ui-doc-glance)
+    (evil-lookup)))
+
+(defun my-smart-doc-focus ()
+  "Toggle focus of lsp-ui doc."
+  (interactive)
+  (let ((frame (lsp-ui-doc--get-frame)))
+    (if (frame-parameter frame 'lsp-ui-doc--no-focus)
+        (lsp-ui-doc-focus-frame)
+      (lsp-ui-doc-unfocus-frame))))
+
+(defun my-smart-doc-hide ()
+  "When lsp-ui doc is in focus or visible while lsp-ui is active, hide it.
+Otherwise, just do the default behavior of evil."
+  (interactive)
+  (if (or (bound-and-true-p lsp-ui-doc-frame-mode)
+          (and (fboundp 'lsp-ui-doc--visible-p) (lsp-ui-doc--visible-p)))
+      (lsp-ui-doc-hide)
+    (call-interactively 'evil-record-macro)))
+
 (use-package general
   :config
   (general-define-key
@@ -302,7 +328,19 @@
    "h n"   'hl-todo-next
    "h p"   'hl-todo-previous
 
-   "l"     '(:package lsp-mode :keymap lsp-command-map :which-key "lsp-mode prefix")))
+   "l"     '(:package lsp-mode :keymap lsp-command-map :which-key "lsp-mode prefix"))
+
+  ;; Use lsp-ui-doc when it's available
+  (general-define-key
+   :keymaps 'lsp-ui-mode-map
+   "<tab>" 'my-smart-doc-focus)
+  (general-define-key
+   :keymaps 'lsp-ui-doc-frame-mode-map
+   "<tab>" 'my-smart-doc-focus)
+  ;; You can't bind the key to any other keymap except evil-normal-state-map
+  (general-define-key
+   :keymaps 'evil-normal-state-map
+   "q" 'my-smart-doc-hide))
 
 (use-package lsp-mode
   :hook
@@ -360,13 +398,13 @@
   :config
   (setq lsp-ui-doc-enable t)
   (setq lsp-ui-doc-include-signature t)
+  (setq lsp-ui-doc-position 'at-point)
   (setq lsp-ui-peek-always-show t)
   (setq lsp-ui-sideline-show-code-actions t)
   (setq lsp-ui-sideline-show-diagnostics t)
   (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-sideline-ignore-duplicate t)
-  (lsp-ui-doc-frame-mode 1)
   (add-hook 'lsp-mode-hook 'lsp-ui-mode))
 
 (use-package company
