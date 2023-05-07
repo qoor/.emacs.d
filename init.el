@@ -383,6 +383,12 @@ Otherwise, just do the default behavior of evil."
     :remote? t
     :server-id 'cmake-language-server-remote)))
 
+(use-package lsp-pyright
+  :after lsp-mode
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp))))
+
 (use-package which-key
   :config
   (which-key-setup-side-window-right)
