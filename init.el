@@ -86,9 +86,11 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (display-fill-column-indicator-mode)
-            (my-set-c-style)
-            (modify-syntax-entry ?_ "w")
-            (setq evil-symbol-word-search t)))
+            (my-set-c-style)))
+
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?_ "w")))
 
 (use-package dracula-theme
   :config
@@ -170,7 +172,6 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-undo-system 'undo-redo)
-  (defalias 'forward-evil-word 'forward-evil-symbol)
   :custom
   (evil-want-minibuffer t)
   :config
@@ -347,7 +348,9 @@ Otherwise, just do the default behavior of evil."
   (((c-mode
      c++-mode
      cmake-mode
-     sql-mode) . lsp)
+     sql-mode
+     csharp-mode
+     rust-mode) . lsp)
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
                             (lsp-enable-which-key-integration)))))
   :commands lsp
@@ -370,6 +373,14 @@ Otherwise, just do the default behavior of evil."
   (setq lsp-enable-symbol-highlighting t)
   (setq lsp-enable-text-document-color t)
   (setq lsp-enable-xref t)
+  :custom
+  (lsp-csharp-omnisharp-roslyn-download-url
+        "https://github.com/OmniSharp/omnisharp-roslyn/releases/latest/download/omnisharp-osx.zip")
+  (lsp-csharp-omnisharp-roslyn-binary-path
+        (f-join lsp-server-install-dir "omnisharp-roslyn" "latest" "run"))
+
+  (lsp-rust-analyzer-display-parameter-hints t)
+
   (lsp-register-client
    (make-lsp-client
     :new-connection (lsp-tramp-connection "clangd")
@@ -496,7 +507,7 @@ Otherwise, just do the default behavior of evil."
 (use-package flycheck-rust
   :hook
   (rust-mode . flycheck-mode))
-(use-package cargo
+(use-package cargo-mode
   :hook
   (rust-mode . cargo-minor-mode))
 (use-package toml-mode)
@@ -516,6 +527,11 @@ Otherwise, just do the default behavior of evil."
   ("\\.md" . gfm-mode)
   :init
   (setq markdown-command "pandoc -t html5 -f gfm --self-contained --mathjax --quiet --highlight-style=zenburn --template=github.html5"))
+
+(when (< emacs-major-version 29)
+  (use-package csharp-mode))
+
+(use-package rust-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
