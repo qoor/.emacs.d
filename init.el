@@ -512,11 +512,7 @@ Otherwise, just do the default behavior of evil."
   (rust-mode . cargo-minor-mode))
 (use-package toml-mode)
 
-(use-package cmake-mode
-  :hook
-  (cmake-mode . (lambda ()
-                  (modify-syntax-entry ?_ "w")
-                  (setq evil-symbol-word-search t))))
+(use-package cmake-mode)
 
 (use-package dtrt-indent
   :config
