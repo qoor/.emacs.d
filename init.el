@@ -350,7 +350,9 @@ Otherwise, just do the default behavior of evil."
      cmake-mode
      sql-mode
      csharp-mode
-     rust-mode) . lsp)
+     rust-mode
+     yaml-mode
+     dockerfile-mode) . lsp)
    (lsp-mode . (lambda () (let ((lsp-keymap-prefix "SPC l"))
                             (lsp-enable-which-key-integration)))))
   :commands lsp
@@ -528,6 +530,10 @@ Otherwise, just do the default behavior of evil."
   (use-package csharp-mode))
 
 (use-package rust-mode)
+
+(use-package yaml-mode)
+
+(use-package dockerfile-mode)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
