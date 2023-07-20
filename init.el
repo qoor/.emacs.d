@@ -382,6 +382,7 @@ Otherwise, just do the default behavior of evil."
         (f-join lsp-server-install-dir "omnisharp-roslyn" "latest" "run"))
 
   (lsp-rust-analyzer-display-parameter-hints t)
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
 
   (lsp-register-client
    (make-lsp-client
@@ -394,7 +395,13 @@ Otherwise, just do the default behavior of evil."
     :new-connection (lsp-tramp-connection "cmake-language-server")
     :major-modes '(cmake-mode)
     :remote? t
-    :server-id 'cmake-language-server-remote)))
+    :server-id 'cmake-language-server-remote))
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-tramp-connection "rust-analyzer")
+    :major-modes '(rust-mode)
+    :remote? t
+    :server-id 'rust-server-remote)))
 
 (use-package lsp-pyright
   :after lsp-mode
@@ -533,7 +540,11 @@ Otherwise, just do the default behavior of evil."
 
 (use-package yaml-mode)
 
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :hook
+  (dockerfile-mode .
+                   (lambda ()
+                     (setq-local indent-line-function #'sh-basic-indent-line))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
